@@ -49,7 +49,7 @@ lookup_df = pd.read_csv(sys.argv[3]) #data for each image
 
 os.makedirs(output_directory, exist_ok=True)
 
-df = df.merge(lookup_df, left_on='filename', right_on='new_filename', how='outer')
+df = df.merge(lookup_df, left_on='filename', right_on='new_filename', how='inner')
 
 for row in df.itertuples(index=False):
     processImage(row.image_path, (output_directory+row.filename), squareRes(targetResFinder(df)))
